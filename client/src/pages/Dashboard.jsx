@@ -35,7 +35,7 @@ const VistaCiudadano = ({ usuario, handleLogout }) => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:3000/api/reports', formData, {
+      await axios.post('https://sistema-denuncias-t26t.onrender.com/api/reports', formData, {
         headers: { 
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -82,11 +82,11 @@ const VistaAutoridad = ({ usuario, handleLogout }) => {
             const config = { headers: { 'Authorization': `Bearer ${token}` } };
 
             // 1. Cargar Lista
-            const resLista = await axios.get('http://localhost:3000/api/reports/admin/todas', config);
+            const resLista = await axios.get('https://sistema-denuncias-t26t.onrender.com/api/reports/admin/todas', config);
             setDenuncias(resLista.data);
 
             // 2. Cargar Estadísticas
-            const resStats = await axios.get('http://localhost:3000/api/reports/admin/stats', config);
+            const resStats = await axios.get('https://sistema-denuncias-t26t.onrender.com/api/reports/admin/stats', config);
             prepararGrafico(resStats.data);
 
         } catch (error) { console.error(error); }
@@ -127,7 +127,7 @@ const VistaAutoridad = ({ usuario, handleLogout }) => {
     const cambiarEstado = async (id, nuevoEstado) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(`http://localhost:3000/api/reports/${id}/estado`, 
+            await axios.patch(`https://sistema-denuncias-t26t.onrender.com/api/reports/${id}/estado`, 
                 { estado: nuevoEstado },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
@@ -174,8 +174,8 @@ const VistaAutoridad = ({ usuario, handleLogout }) => {
                             <td>{d.descripcion}</td>
                             <td>
                                 {d.foto_url ? (
-                                    <a href={`http://localhost:3000${d.foto_url}`} target="_blank" rel="noreferrer">
-                                        <img src={`http://localhost:3000${d.foto_url}`} alt="Evidencia" style={{width:'50px', height:'50px', objectFit:'cover'}} />
+                                    <a href={`https://sistema-denuncias-t26t.onrender.com${d.foto_url}`} target="_blank" rel="noreferrer">
+                                        <img src={`https://sistema-denuncias-t26t.onrender.com${d.foto_url}`} alt="Evidencia" style={{width:'50px', height:'50px', objectFit:'cover'}} />
                                     </a>
                                 ) : 'Sin foto'}
                             </td>

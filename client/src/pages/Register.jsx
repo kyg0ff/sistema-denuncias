@@ -23,7 +23,7 @@ const Register = () => {
     e.preventDefault();
     try {
       // Petición al Backend
-      const response = await axios.post('http://localhost:3000/api/auth/register', formData);
+      const response = await axios.post('https://sistema-denuncias-t26t.onrender.com/api/auth/register', formData);
       alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
       navigate('/'); // Redirigir al Login
     } catch (error) {
